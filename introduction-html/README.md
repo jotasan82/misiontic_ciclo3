@@ -1,1 +1,7 @@
-# Introduccion to html
+# Introduction to html
+
+- head
+- body
+-- header
+-- main
+-- footer
