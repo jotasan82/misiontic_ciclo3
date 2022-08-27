@@ -2,6 +2,6 @@
 
 - head
 - body
--- header
--- main
--- footer
+- - header
+- - main
+- - footer
