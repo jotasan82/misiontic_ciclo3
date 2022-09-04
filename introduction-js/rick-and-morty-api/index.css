@@ -1,0 +1,26 @@
+#section-cards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.card{
+    border: 1px solid black;
+    width: 500px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+}
+
+.card img{
+    width: 40%;
+    height: 100%;
+}
+
+.body-card{
+    width:60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
