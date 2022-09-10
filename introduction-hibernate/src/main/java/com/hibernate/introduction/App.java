@@ -8,7 +8,8 @@ public class App
         MascotaVista vista = new MascotaVista();
         //vista.crearMascota();
         //vista.consultarMascotaXid();
-        vista.consultarMascotasXapellido();
+        //vista.consultarMascotasXapellido();
+        vista.menu();
 
         /*Crear objeto fablicante de sesiones
         SessionFactory factory = new Configuration().configure("cfg.xml").addAnnotatedClass(Mascota.class).buildSessionFactory();
