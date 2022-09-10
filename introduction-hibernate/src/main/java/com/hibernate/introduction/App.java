@@ -1,20 +1,14 @@
 package com.hibernate.introduction;
 
-import java.util.List;
+import com.hibernate.introduction.vista.MascotaVista;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import com.hibernate.introduction.modelo.Mascota;
-
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args ){
-        // Crear objeto fablicante de sesiones
+        MascotaVista vista = new MascotaVista();
+        vista.crearMascota();
+
+        /*Crear objeto fablicante de sesiones
         SessionFactory factory = new Configuration().configure("cfg.xml").addAnnotatedClass(Mascota.class).buildSessionFactory();
 
 
@@ -58,7 +52,7 @@ public class App
             session.getTransaction().commit();*/
 
             /*****DELETE*****/
-            Mascota mascota = session.find(Mascota.class, 2);
+            /*Mascota mascota = session.find(Mascota.class, 2 );
             session.remove(mascota);
             session.getTransaction().commit();
 
@@ -69,6 +63,6 @@ public class App
         }
 
         // Cerrar sesión
-        session.close();
+        session.close();*/
     }
 }
