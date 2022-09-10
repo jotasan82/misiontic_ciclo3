@@ -1,5 +1,7 @@
 package com.hibernate.introduction;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -26,10 +28,36 @@ public class App
         try {
             // CRUD
 
-            // Create
-            Mascota mascota = new Mascota("Niño", "Quintero", "Perro", "Chandinez", 6, "Ninguna");
+            /*****Create*****/
+            /*Mascota mascota = new Mascota("Sasha", "Hernandez", "Perro", "Chandinez", 3, "Ninguna");
             session.persist(mascota);
+            session.getTransaction().commit();*/
+
+            /********READ*********/
+            //Forma 01
+            //Mascota mascota = session.find(Mascota.class, 1);
+            //System.out.println(mascota);
+            
+            //Forma 02
+            //Mascota mascota = session.byId(Mascota.class).load(3);
+            //System.out.println(mascota);
+
+            //Forma 03
+            /*List<Mascota> mascotas = session.createQuery("from Mascota", Mascota.class).list();
+            for (int i=0;i<mascotas.size();i++){
+                System.out.println(mascotas.get(i));
+            }*/
+
+            //******UPDATE******
+            Mascota mascota = session.find(Mascota.class, 3);
+            mascota.setRaza("Pincher");
+            mascota.setEdad(6);
+            mascota.setObservacion("Problemas patas traseras");
+            // Guardar cambios
+            session.merge(mascota);
             session.getTransaction().commit();
+
+            
 
         } catch (Exception e) {
             e.printStackTrace();
