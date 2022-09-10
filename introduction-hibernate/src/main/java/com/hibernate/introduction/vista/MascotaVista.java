@@ -11,6 +11,10 @@ public class MascotaVista {
         controlador = new MascotaControlador();
     }
 
+    public void mostrarMensaje(String mensaje){
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
+
     public void crearMascota(){
         //Soliciar datos
         String nombre = JOptionPane.showInputDialog(null, "Ingrese nombre de la mascota: ");
@@ -23,10 +27,24 @@ public class MascotaVista {
         //Enviar datos al controlador
         try {
             controlador.create(nombre, apellido, tipoMascota, raza, edad, observacion);
-            JOptionPane.showMessageDialog(null, "Mascota creada con éxito");
+            mostrarMensaje("Mascota creada con éxito");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Por favor intente mas tarde");
+            mostrarMensaje("Por favor intente mas tarde");
+        }   
+    }
+
+    public void consultarMascotaXid(){
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el identificador de la mascota"));
+        try {
+            String info = controlador.readById(id);
+            mostrarMensaje(info);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarMensaje("Por favor intente mas tarde");
         }
+    }
+
+    public void consultarMascotaXnombre(){
         
     }
 }

@@ -6,7 +6,8 @@ public class App
 {
     public static void main( String[] args ){
         MascotaVista vista = new MascotaVista();
-        vista.crearMascota();
+        //vista.crearMascota();
+        vista.consultarMascotaXid();
 
         /*Crear objeto fablicante de sesiones
         SessionFactory factory = new Configuration().configure("cfg.xml").addAnnotatedClass(Mascota.class).buildSessionFactory();
