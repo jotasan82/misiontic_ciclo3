@@ -50,4 +50,12 @@ public class MascotaControlador {
         }
         return mascotas;
     }
+
+    public List<String> getList(){
+        Session session = factory.openSession();
+        session.beginTransaction();
+        List<Mascota> mascotas = session.createQuery("from Mascota", Mascota.class).list();
+        session.close();
+        return objToString(mascotas);
+    }
 }
