@@ -77,6 +77,17 @@ public class MascotaVista {
         }
     }
 
+    public void updateMascota(){
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el identificador de la mascota"));
+        try {
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarMensaje("Por favor intente mas tarde");
+        }
+    }
+
     public void menu(){
         String info = "1) Registrar mascota\n";
         info += "2) Consultar mascota por id\n";

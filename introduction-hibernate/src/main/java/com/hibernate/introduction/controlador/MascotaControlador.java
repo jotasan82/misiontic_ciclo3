@@ -58,4 +58,21 @@ public class MascotaControlador {
         session.close();
         return objToString(mascotas);
     }
+
+    public void update(int id, String nombre, String apellido, String tipo_mascota, String raza, int edad, String observacion) throws Exception{
+        Session session = factory.openSession();
+        session.beginTransaction();
+        Mascota mascota = session.find(Mascota.class, id);
+        //Actualizar Objeto
+        mascota.setNombre(nombre);
+        mascota.setApellido(apellido);
+        mascota.setTipo_mascota(tipo_mascota);
+        mascota.setRaza(raza);
+        mascota.setEdad(edad);
+        mascota.setObservacion(observacion);
+        // Realizar Actualizacion en la DB
+        session.merge(mascota);
+        session.getTransaction().commit();
+        session.close();
+    }
 }
