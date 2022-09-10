@@ -77,11 +77,16 @@ public class MascotaVista {
         }
     }
 
-    public void updateMascota(){
+    public void actualizarMascota(){
         int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Por favor ingrese el identificador de la mascota"));
+        String nombre = JOptionPane.showInputDialog(null, "Ingrese nombre de la mascota: ");
+        String apellido = JOptionPane.showInputDialog(null, "Ingrese apellido del Propietario: ");
+        String tipoMascota = JOptionPane.showInputDialog(null, "Ingrese el tipo de mascota: ");
+        String raza = JOptionPane.showInputDialog(null, "Ingrese la raza de la mascota: ");
+        int edad = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la edad de la mascota: "));
+        String observacion = JOptionPane.showInputDialog(null, "Ingrese las observaciones: ");
         try {
-            
-
+            controlador.update(id, nombre, apellido, tipoMascota, raza, edad, observacion);
         } catch (Exception e) {
             e.printStackTrace();
             mostrarMensaje("Por favor intente mas tarde");
