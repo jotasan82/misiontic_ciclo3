@@ -49,12 +49,17 @@ public class App
             }*/
 
             //******UPDATE******
-            Mascota mascota = session.find(Mascota.class, 3);
+            /*Mascota mascota = session.find(Mascota.class, 3);
             mascota.setRaza("Pincher");
             mascota.setEdad(6);
             mascota.setObservacion("Problemas patas traseras");
             // Guardar cambios
             session.merge(mascota);
+            session.getTransaction().commit();*/
+
+            /*****DELETE*****/
+            Mascota mascota = session.find(Mascota.class, 2);
+            session.remove(mascota);
             session.getTransaction().commit();
 
             
