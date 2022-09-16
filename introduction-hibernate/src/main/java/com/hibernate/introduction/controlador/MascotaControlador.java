@@ -18,6 +18,12 @@ public class MascotaControlador {
         factory = new Configuration().configure("cfg.xml").addAnnotatedClass(Mascota.class).buildSessionFactory();
     }
 
+    public Session createSession(){
+        Session session = factory.openSession();
+        session.beginTransaction();
+        return session;
+    }
+
     public void create(String nombre, String apellido, String tipo_mascota, String raza, int edad, String observacion) throws Exception{
         Session session = factory.openSession();
         session.beginTransaction();
@@ -74,5 +80,18 @@ public class MascotaControlador {
         session.merge(mascota);
         session.getTransaction().commit();
         session.close();
+    }
+
+    public void deleteService(Mascota mascota){
+        Session session = createSession();
+        // Eliminar
+        session.remove(mascota);
+        session.getTransaction().commit();
+    }
+
+    public void delete(int id){
+        Session session = createSession();
+        Mascota mascota = session.find(Mascota.class, id);
+        deleteService(mascota);
     }
 }

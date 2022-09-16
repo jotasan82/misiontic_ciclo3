@@ -87,10 +87,17 @@ public class MascotaVista {
         String observacion = JOptionPane.showInputDialog(null, "Ingrese las observaciones: ");
         try {
             controlador.update(id, nombre, apellido, tipoMascota, raza, edad, observacion);
+            mostrarMensaje("Mascota actualizada con éxito");
         } catch (Exception e) {
             e.printStackTrace();
             mostrarMensaje("Por favor intente mas tarde");
         }
+    }
+
+    public void eliminarMascota(){
+        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "ELIMINAR MASCOTA\nPor favor ingrese el identificador de la mascota"));
+        controlador.delete(id);
+        mostrarMensaje("Mascota eliminada con éxito");
     }
 
     public void menu(){
@@ -116,8 +123,10 @@ public class MascotaVista {
                     consultarMascotasXapellido();
                     break;
                 case 4:
+                    actualizarMascota();
                     break;
                 case 5:
+                    eliminarMascota();
                     break;
                 case 6:
                     listarMascotas();
