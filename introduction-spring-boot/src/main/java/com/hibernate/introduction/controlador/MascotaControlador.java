@@ -8,6 +8,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,15 +19,15 @@ import com.hibernate.introduction.modelo.Mascota;
 @RestController
 @RequestMapping("/mascotas")
 public class MascotaControlador {
-    //ATRIBUTOS
+    // ATRIBUTOS
     SessionFactory factory;
 
-    public MascotaControlador(){
+    public MascotaControlador() {
         // Crear objeto fablicante de sesiones
         factory = new Configuration().configure("cfg.xml").addAnnotatedClass(Mascota.class).buildSessionFactory();
     }
 
-    public Session createSession(){
+    public Session createSession() {
         Session session = factory.openSession();
         session.beginTransaction();
         return session;
@@ -33,13 +35,13 @@ public class MascotaControlador {
 
     /**
      * @GetMapping
-     * public String holaMundo(){
-     * return "Hola mundo utilizando Spring Boot";
-     * }
+     *             public String holaMundo(){
+     *             return "Hola mundo utilizando Spring Boot";
+     *             }
      */
 
     @GetMapping
-    public List<Mascota> getList() throws Exception{
+    public List<Mascota> getList() throws Exception {
         Session session = factory.openSession();
         session.beginTransaction();
         List<Mascota> mascotas = session.createQuery("from Mascota", Mascota.class).list();
@@ -48,7 +50,7 @@ public class MascotaControlador {
     }
 
     @GetMapping("/{id}")
-    public Mascota readById(@PathVariable(name="id") int id) throws Exception{
+    public Mascota readById(@PathVariable(name = "id") int id) throws Exception {
         Session session = factory.openSession();
         session.beginTransaction();
         Mascota mascota = session.find(Mascota.class, id);
@@ -57,37 +59,47 @@ public class MascotaControlador {
     }
 
     @GetMapping("/fullname")
-    public List<Mascota> getByLastname(@RequestParam String nombre, @RequestParam String apellido) throws Exception{
-        //List<String> mascotas = new ArrayList<>();
+    public List<Mascota> getByLastname(@RequestParam String nombre, @RequestParam String apellido) throws Exception {
+        // List<String> mascotas = new ArrayList<>();
         Session session = factory.openSession();
         session.beginTransaction();
-        List<Mascota> objMascotas = session.createQuery("from Mascota where nombre = :n and apellido = :ap", Mascota.class).setParameter("n", nombre).setParameter("ap", apellido).list();
+        List<Mascota> objMascotas = session
+                .createQuery("from Mascota where nombre = :n and apellido = :ap", Mascota.class)
+                .setParameter("n", nombre).setParameter("ap", apellido).list();
         session.close();
         return objMascotas;
     }
-    
-    public void create(String nombre, String apellido, String tipo_mascota, String raza, int edad, String observacion) throws Exception{
+
+    @PostMapping
+    public String create(@RequestBody Mascota mascota) {
+        String message = "";
         Session session = factory.openSession();
         session.beginTransaction();
-        Mascota mascota = new Mascota(nombre, apellido, tipo_mascota, raza, edad, observacion);
-        session.persist(mascota);
-        session.getTransaction().commit();
+        try {
+            session.persist(mascota);
+            session.getTransaction().commit();
+            message = "Mascota creada con éxito";
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
         session.close();
+        return message;
     }
 
-    public List<String> objToString(List<Mascota> objMascotas){
+    public List<String> objToString(List<Mascota> objMascotas) {
         List<String> mascotas = new ArrayList<>();
-        for(int i=0;i<objMascotas.size();i++){
+        for (int i = 0; i < objMascotas.size(); i++) {
             mascotas.add(objMascotas.get(i).toString());
         }
         return mascotas;
     }
 
-    public void update(int id, String nombre, String apellido, String tipo_mascota, String raza, int edad, String observacion) throws Exception{
+    public void update(int id, String nombre, String apellido, String tipo_mascota, String raza, int edad,
+            String observacion) throws Exception {
         Session session = factory.openSession();
         session.beginTransaction();
         Mascota mascota = session.find(Mascota.class, id);
-        //Actualizar Objeto
+        // Actualizar Objeto
         mascota.setNombre(nombre);
         mascota.setApellido(apellido);
         mascota.setTipo_mascota(tipo_mascota);
@@ -100,14 +112,14 @@ public class MascotaControlador {
         session.close();
     }
 
-    public void deleteService(Mascota mascota){
+    public void deleteService(Mascota mascota) {
         Session session = createSession();
         // Eliminar
         session.remove(mascota);
         session.getTransaction().commit();
     }
 
-    public void delete(int id){
+    public void delete(int id) {
         Session session = createSession();
         Mascota mascota = session.find(Mascota.class, id);
         deleteService(mascota);
