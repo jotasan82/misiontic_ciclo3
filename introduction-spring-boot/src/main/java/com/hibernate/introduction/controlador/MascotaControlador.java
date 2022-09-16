@@ -7,11 +7,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hibernate.introduction.modelo.Mascota;
 
 @RestController
+@RequestMapping("/mascotas")
 public class MascotaControlador {
     //ATRIBUTOS
     SessionFactory factory;
@@ -21,11 +23,22 @@ public class MascotaControlador {
         factory = new Configuration().configure("cfg.xml").addAnnotatedClass(Mascota.class).buildSessionFactory();
     }
 
-    @GetMapping
-    public String holaMundo(){
-        return "Hola mundo utilizando Spring Boot";
-    }
+    /**
+     * @GetMapping
+     * public String holaMundo(){
+     * return "Hola mundo utilizando Spring Boot";
+     * }
+     */
 
+    @GetMapping
+    public List<Mascota> getList() throws Exception{
+        Session session = factory.openSession();
+        session.beginTransaction();
+        List<Mascota> mascotas = session.createQuery("from Mascota", Mascota.class).list();
+        session.close();
+        return mascotas;
+    }
+    
     public Session createSession(){
         Session session = factory.openSession();
         session.beginTransaction();
@@ -63,14 +76,6 @@ public class MascotaControlador {
             mascotas.add(objMascotas.get(i).toString());
         }
         return mascotas;
-    }
-
-    public List<String> getList(){
-        Session session = factory.openSession();
-        session.beginTransaction();
-        List<Mascota> mascotas = session.createQuery("from Mascota", Mascota.class).list();
-        session.close();
-        return objToString(mascotas);
     }
 
     public void update(int id, String nombre, String apellido, String tipo_mascota, String raza, int edad, String observacion) throws Exception{
