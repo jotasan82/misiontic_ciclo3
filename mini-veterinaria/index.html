@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
-<!--Cabecera del documento-->
-
-<head lang="es">
-    <meta charset="UTF-16" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veterinaria</title>
-    <!--Cargar hojas de estilos-->
-    <link rel="stylesheet" href="index.css" />
-    <!--Cargar Bootstrap-->
+    <link rel="stylesheet" href="styles/index.css">
+    <!--Cargar Bootstrap desde el CDN-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
@@ -20,73 +19,8 @@
         integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
         crossorigin="anonymous"></script>
 </head>
-<!--Cuerpo del documento-->
-
 <body>
-    <!--Encabezadi de la página-->
-    <header>
-        <!--Barra de navegación-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Grupo 24</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!--Opciones de navegación-->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Registrar Mascota</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main>
-        <section id="section-form">
-            <!--Crear formulario-->
-            <form class="mb-3">
-                <!--Nombre mascota-->
-                <label for="nombre_mascota" class="form-label">Nombre Mascota: </label>
-                <input type="text" id="nombre_mascota" class="form-control" />
-                <br />
-                <!--Apellido propietario-->
-                <label for="apellido_propietario" class="form-label">Apellido Propietario: </label>
-                <input type="text" id="apellido_propietario" class="form-control" />
-                <br />
-                <!--Tipo mascota-->
-                <label for="tipo_mascota" class="form-label">Tipo Mascota: </label>
-                <input type="text" id="tipo_mascota" class="form-control" />
-                <br />
-                <!--Raza-->
-                <label for="raza" class="form-label">Raza: </label>
-                <input type="text" id="raza" class="form-control" />
-                <br />
-                <!--Edad de la mascota-->
-                <label for="edad" class="form-label">Edad Mascota: </label>
-                <input type="number" id="edad" class="form-control" />
-                <br />
-                <!--Observación-->
-                <label for=" observacion" class="form-label">Observación: </label>
-                <br />
-                <textarea id="observacion" rows="5" cols="80" class="form-control"></textarea>
-                <br />
-                <div id="cont-btn">
-                    <!--Centrar botón-->
-                    <button type="submit" class="btn btn-outline-primary">Registrar</button>
-                </div>
-
-            </form>
-        </section>
-
-    </main>
-    <footer></footer>
+    
+    <script src="./scripts/index.js"></script>
 </body>
-
 </html>
