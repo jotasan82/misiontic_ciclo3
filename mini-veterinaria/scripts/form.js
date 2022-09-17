@@ -16,6 +16,7 @@ function get_data_form(evt){
     observacion: form.observacion.value
    }
    create(mascota)
+   clear(form)
 }
 
 async function create(mascota){
@@ -30,4 +31,14 @@ async function create(mascota){
 
     const text = await resp.text()
     alert(text)
+}
+
+function clear(form){
+    form.nombre.value = ""
+    form.apellido.value = ""
+    form.tipo_mascota.value = ""
+    form.raza.value = ""
+    form.edad.value = ""
+    form.observacion.value = ""
+    
 }
