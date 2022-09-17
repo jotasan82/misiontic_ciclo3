@@ -37,10 +37,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Registrar Mascota</a>
+                            <a class="nav-link" href="form.html">Registrar Mascota</a>
                         </li>
                         
                     </ul>
@@ -51,31 +51,31 @@
     <main>
         <section id="section-form">
             <!--Crear formulario-->
-            <form class="mb-3">
+            <form onsubmit="get_data_form(event)" class="mb-3">
                 <!--Nombre mascota-->
                 <label for="nombre_mascota" class="form-label">Nombre Mascota: </label>
-                <input type="text" id="nombre_mascota" class="form-control" />
+                <input name="nombre" type="text" id="nombre_mascota" class="form-control" />
                 <br />
                 <!--Apellido propietario-->
                 <label for="apellido_propietario" class="form-label">Apellido Propietario: </label>
-                <input type="text" id="apellido_propietario" class="form-control" />
+                <input name="apellido" type="text" id="apellido_propietario" class="form-control" />
                 <br />
                 <!--Tipo mascota-->
                 <label for="tipo_mascota" class="form-label">Tipo Mascota: </label>
-                <input type="text" id="tipo_mascota" class="form-control" />
+                <input name="tipo_mascota" type="text" id="tipo_mascota" class="form-control" />
                 <br />
                 <!--Raza-->
                 <label for="raza" class="form-label">Raza: </label>
-                <input type="text" id="raza" class="form-control" />
+                <input name="raza" type="text" id="raza" class="form-control" />
                 <br />
                 <!--Edad de la mascota-->
                 <label for="edad" class="form-label">Edad Mascota: </label>
-                <input type="number" id="edad" class="form-control" />
+                <input name="edad" type="number" id="edad" class="form-control" />
                 <br />
                 <!--Observación-->
                 <label for=" observacion" class="form-label">Observación: </label>
                 <br />
-                <textarea id="observacion" rows="5" cols="80" class="form-control"></textarea>
+                <textarea name="observacion" id="observacion" rows="5" cols="80" class="form-control"></textarea>
                 <br />
                 <div id="cont-btn">
                     <!--Centrar botón-->
