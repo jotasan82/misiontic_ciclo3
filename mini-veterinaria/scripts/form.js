@@ -1,4 +1,8 @@
 const URL_API = "http://localhost:8080/mascotas"
+let update_data = {
+    update: false,
+    id: null
+}
 
 function get_data_form(evt){
     // Indicar por medio del evento que no recargue página
@@ -15,8 +19,27 @@ function get_data_form(evt){
     edad: form.edad.value,
     observacion: form.observacion.value
    }
+   if(update_data.update){
+    mascota.id = update_data.id
+    update(mascota)
+   }else{
    create(mascota)
+   }
    clear(form)
+}
+
+async function update(mascota){
+    //Enviar petición
+    const resp = await fetch(URL_API, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(mascota)
+    })
+    const text = await resp.text()
+    alert(text)
+    window.location.href = "index.html"
 }
 
 async function create(mascota){
@@ -60,6 +83,10 @@ function get_params(){
         const mascota = JSON.parse(param_mascota)
         const form = document.getElementById("form")
         set_form(form, mascota)
+        update_data.update = true
+        update_data.id = mascota.id
+        document.getElementById("btn-form").innerText = "Actualizar"
+        document.getElementById("link-create").innerText = "Actualizar Mascota"
     }
 }
 
