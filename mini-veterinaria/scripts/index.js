@@ -1,4 +1,5 @@
 const URL_API="http://localhost:8080/mascotas"
+let ID_MASCOTA = -1
 
 async function get_mascotas(){
     // Enviar petición
@@ -27,24 +28,30 @@ function show(mascotas){
             <td>
                 <button class="btn btn-warning" onclick='update(${JSON.stringify(obj)})'>Actualizar</button>
                 &nbsp;
-                <button class="btn btn-danger" onclick='delete_mascota(${obj.id})'>Eliminar</button>
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="save_id(${obj.id})">Eliminar</button>
             </td>
         </tr>`
     }
     tbody.innerHTML = tr_body
 }
 
+//onclick='delete_mascota(${obj.id})'
+
+function save_id(id){
+    ID_MASCOTA = id
+}
+
 function update(mascota){
     window.location.href=`form.html?mascota=${JSON.stringify(mascota)}`
 }
 
-async function delete_mascota(id){
+async function delete_mascota(){
     //Enviar petición
-    const resp = await fetch(`${URL_API}/${id}`, {
+    const resp = await fetch(`${URL_API}/${ID_MASCOTA}`, {
         method: 'DELETE'
     })
     const text = await resp.text()
-    alert(text)
+    //alert(text)
     main()
 }
 
